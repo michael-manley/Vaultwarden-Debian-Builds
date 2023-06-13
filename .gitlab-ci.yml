@@ -7,3 +7,13 @@ compile-bullseye:
   artifacts:
     paths:
       - artifacts
+
+compile-bookworm:
+  stage: build
+  script:
+    - ./build
+  tags:
+    - bookworm
+  artifacts:
+    paths:
+      - artifacts
