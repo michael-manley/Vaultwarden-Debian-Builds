@@ -20,4 +20,4 @@ tar xfvv $DL_DIR/$BW_VERSION.tar.gz
 tar xfvv $DL_DIR/bw_web_v$BW_WEB_VERSION.tar.gz
 dpkg-buildpackage -F
 
-cp $DL_DIR/*.dsc $DL_DIR/*.deb $DL_DIR/vaultwarden_*.tar.gz $ARCHIVE_DIR
+cp $DL_DIR/*.dsc $DL_DIR/*.deb $DL_DIR/vaultwarden_*.tar.gz $DL_DIR/*.changes $DL_DIR/*.buildinfo $ARCHIVE_DIR
