@@ -1,0 +1,15 @@
+Source: vaultwarden
+Section: net
+Priority: optional
+Maintainer: Michael J. Manley <mjmanley@ntge.net>
+Build-Depends: build-essential, curl, libmariadb-dev-compat, libsqlite3-dev, pkg-config, git
+
+Package: vaultwarden
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs
+
+Package: vaultwarden-webvault
+Architecture: all
+Depends: vaultwarden
+Description: Patched copy of Bitwarden Web Vault for Vaultwarden

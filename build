@@ -1,0 +1,23 @@
+#!/bin/bash
+DEBIAN_CONTROL=$(pwd)
+DL_DIR=$(pwd)/out
+ARCHIVE_DIR=$(pwd)/artifacts
+
+rm -rf $DL_DIR $ARCHIVE_DIR
+mkdir -p $DL_DIR
+mkdir -p $ARCHIVE_DIR
+
+cd $DL_DIR
+source $DEBIAN_CONTROL/versions
+wget https://github.com/dani-garcia/vaultwarden/archive/refs/tags/$BW_VERSION.tar.gz
+wget https://github.com/dani-garcia/bw_web_builds/releases/download/v$BW_WEB_VERSION/bw_web_v$BW_WEB_VERSION.tar.gz
+mkdir -p $DL_DIR/vaultwarden
+cp -R $DEBIAN_CONTROL/debian $DL_DIR/vaultwarden
+cp $DEBIAN_CONTROL/versions $DL_DIR/vaultwarden/version-information
+
+cd $DL_DIR/vaultwarden
+tar xfvv $DL_DIR/$BW_VERSION.tar.gz
+tar xfvv $DL_DIR/bw_web_v$BW_WEB_VERSION.tar.gz
+dpkg-buildpackage -F
+
+cp $DL_DIR/*.dsc $DL_DIR/*.deb $DL_DIR/vaultwarden_*.tar.gz $ARCHIVE_DIR

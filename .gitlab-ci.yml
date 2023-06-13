@@ -1,0 +1,9 @@
+compile-bullseye:
+  stage: build
+  script:
+    - ./build
+  tags:
+    - bullseye
+  artifacts:
+    paths:
+      - artifacts

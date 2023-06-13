@@ -1,0 +1,11 @@
+vaultwarden (1.28.1-1) unstable; urgency=medium
+    
+  * Decode knowndevice X-Request-Email as base64url with no padding by @jjlin in #3376
+  * Fix abort on password reset mail error by @BlackDex in #3390
+  * support /users/<uuid>/invite/resend admin api by @nikolaevn in #3397
+  * always return KdfMemory and KdfParallelism by @stefan0xC in #3398
+  * Fix sending out multiple websocket notifications by @BlackDex in #3405
+  * Revert setcap, update rust and crates by @BlackDex in #3403
+
+ -- Michael J. Manley <mjmanley@ntge.net>  Mon, 12 Jun 2023 15:57:00 -0800
+

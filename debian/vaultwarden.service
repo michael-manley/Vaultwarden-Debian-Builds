@@ -1,0 +1,13 @@
+[Unit]
+Description=Bitwarden Server (Rust Edition)
+Documentation=https://github.com/dani-garcia/vaultwarden
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/vaultwarden.env
+ExecStart=/usr/bin/vaultwarden
+WorkingDirectory=/var/lib/vaultwarden
+ReadWriteDirectories=/var/lib/vaultwarden
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+include version-information
+
+export CARGO_HOME := /tmp/rust/.cargo
+export RUSTUP_HOME := /tmp/rust/.rust
+export PATH := /tmp/rust/.cargo/bin:$(PATH)
+
+DEB_REVISION := $(shell dpkg-parsechangelog --show-field=Version | cut -d- -f2)
+DEB_CODENAME := $(shell grep -Po 'VERSION="[0-9]+ \(\K[^)]+' /etc/os-release)
+
+clean:
+	rm -rf vaultwarden-$(BW_VERSION)/target
+	dh_clean
+
+build:
+	rm -rf /tmp/rust
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+	cd vaultwarden-$(BW_VERSION) && cargo build --features sqlite,mysql --release
+	rm -rf /tmp/rust
+
+binary:
+	install -D vaultwarden-$(BW_VERSION)/target/release/vaultwarden debian/vaultwarden/usr/bin/vaultwarden
+	install -D debian/vaultwarden.env debian/vaultwarden/etc/vaultwarden.env
+	install -d debian/vaultwarden/var/lib/vaultwarden/data
+	install -d debian/vaultwarden-webvault/var/lib/vaultwarden/data
+	cp -R web-vault debian/vaultwarden-webvault/var/lib/vaultwarden/data
+	dh_shlibdeps
+	dh_installsystemd
+	dh_gencontrol -pvaultwarden -- -v$(BW_VERSION)+$(DEB_CODENAME)-$(DEB_REVISION)
+	dh_gencontrol -pvaultwarden-webvault -- -v$(BW_WEB_VERSION)-$(DEB_REVISION)
+	dh_installdeb
+	dh_builddeb
