@@ -23,8 +23,8 @@ binary:
 	install -D vaultwarden-$(BW_VERSION)/target/release/vaultwarden debian/vaultwarden/usr/bin/vaultwarden
 	install -D debian/vaultwarden.env debian/vaultwarden/etc/vaultwarden.env
 	install -d debian/vaultwarden/var/lib/vaultwarden/data
-	install -d debian/vaultwarden-webvault/var/lib/vaultwarden/data
-	cp -R web-vault debian/vaultwarden-webvault/var/lib/vaultwarden/data
+	install -d debian/vaultwarden-webvault/var/lib/vaultwarden
+	cp -R web-vault debian/vaultwarden-webvault/var/lib/vaultwarden
 	dh_shlibdeps
 	dh_installsystemd
 	dh_gencontrol -pvaultwarden -- -v$(BW_VERSION)+$(DEB_CODENAME)-$(DEB_REVISION)
