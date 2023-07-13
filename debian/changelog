@@ -1,3 +1,51 @@
+vaultwarden (1.29.0-1) unstable; urgency=medium
+  
+  Major changes and New Features
+  
+  * WebSocket notifications now work via the default HTTP port. No need for WEBSOCKET_ENABLED and a separate port anymore.
+  * The proxy examples still need to be updated for this. Support for the old websockets port 3012 will remain for the time being.
+  * Mobile Client push notification support, see #3304 thanks @GeekCornerGH!
+  * Web-Vault updated to v2023.5.0 (v2023.5.1 does not add any improvements for us)
+  * The latest Bitwarden Directory Connector can be used now (v2022.11.0)
+  * Storing passkeys is supported, though the clients are not yet released. So, it might be we need to make some changes once they are released.
+  * See: #3593, thanks @GeekCornerGH!
+  
+  What's Changed
+
+  * check if reset password policy is enabled by @stefan0xC in #3427
+  * WebSockets via Rocket's Upgrade connection by @BlackDex in #3404
+  * Several config and admin interface fixes by @BlackDex in #3436
+  * Fixed missing footer_text and a few inconsistencies in email templates by @kennymc-c in #3439
+  * Small update to Rocket WebSockets by @BlackDex in #3440
+  * inline static rsa keys by @vilgotf in #3475
+  * Update Rust and Crates by @BlackDex in #3469
+  * Change String to &str for all Rocket functions and some other fixes by @BlackDex in #3491
+  * Use Rocket v0.5 branch to fix endpoints by @BlackDex in #3502
+  * Use fully qualified image names in Dockerfile by @gitouche-sur-osm in #3505
+  * policy data should be null not an empty object by @stefan0xC in #3513
+  * update web-vault to v2023.4.2 by @stefan0xC in #3522
+  * Sync global_domains.json (Pinterest) by @jjlin in #3532
+  * Prevent 401 on main admin page by @BlackDex in #3547
+  * Update crates and GH Workflow by @BlackDex in #3548
+  * Fix collection change ws notifications by @BlackDex in #3546
+  * Update Rust and Crates by @tessus in #3563
+  * feat: Implement Push Notifications sync by @GeekCornerGH in #3304
+  * Implement the Organization API Key support for the new Directory Connector v2022 by @BlackDex in #3568
+  * Add mobile push device filter to non-null push uuid by @quexten in #3578
+  * Update crates and workflow by @BlackDex in #3603
+  * Add group import on invite by @farodin91 in #3606
+  * Fix send access regression by @BlackDex in #3608
+  * feat: Support for storing passkeys in the vault by @GeekCornerGH in #3593
+  * add user to collection during creation by @farodin91 in #3609
+  * Updated docker run command by @DenuxPlays in #3620
+  * Added-External_id for Collections by @fashberg in #3623
+  * fix missing password check while manual reset password enrollment by @sirux88 in #3632
+  * Update crates and small clippy fix by @BlackDex in #3649
+  * fix version when compiled at a specific commit by @tessus in #3651
+  * Fix org creation regresion by @BlackDex in #3659
+
+ -- Michael J. Manley <mjmanley@ntge.net>  Tue, 11 Jun 2023 08:57:00 -0800
+
 vaultwarden (1.28.1-3) unstable; urgency=medium
     
   * Fixed some bugs on my packaging. Did not install web-vault in correct directory
