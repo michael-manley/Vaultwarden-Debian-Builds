@@ -1,3 +1,15 @@
+vaultwarden (1.29.1-1) unstable; urgency=medium
+  Minor release to fix some issues with organization API key generation when using PostgreSQL
+
+  What's Changed
+
+  * Fix Org API Key generation on PosgreSQL by @BlackDex in #3678
+  * feat: Add support for forwardemail by @GeekCornerGH in #3686
+  * Fix some external_id issues by @BlackDex in #3690
+  * Remove debug code during attachment download by @BlackDex in #3704
+
+ -- Michael J. Manley <mjmanley@ntge.net>  Fri, 28 Jul 2023 14:40:00 -0800
+
 vaultwarden (1.29.0-1) unstable; urgency=medium
   
   Major changes and New Features
