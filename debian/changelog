@@ -1,3 +1,20 @@
+vaultwarden (1.29.2-1) unstable; urgency=medium
+  Minor release to fix an issue forcing user to set amaster password when logging in even when it's already set
+
+  What's Changed
+  * Fix .env.template file by @BlackDex in #3734
+  * Fix UserOrg status during LDAP Import by @BlackDex in #3740
+  * Update images to Bookworm and PQ15 and Rust v1.71 by @BlackDex in #3573
+  * Implement "login with device" by @quexten in #3592
+  * chore: Bump web vault to v2023.7.1 and bump Rust by @GeekCornerGH in #3769
+  * Optimized Favicon downloading by @BlackDex in #3751
+  * add UserDecryptionOptions to login response by @stefan0xC in #3813
+  * add new secretsmanager plan for web-v2023.8.x by @stefan0xC in #3797
+  * Allow Authorization header for Web Sockets by @BlackDex in #3806
+  * Update admin interface by @BlackDex in #3730
+
+ -- Michael J. Manley <mjmanley@ntge.net>  Fri, 8 Sep 2023 14:40:00 -0800
+
 vaultwarden (1.29.1-1) unstable; urgency=medium
   Minor release to fix some issues with organization API key generation when using PostgreSQL
 
