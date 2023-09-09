@@ -1,7 +1,7 @@
 name: Build Vaultwarden Debian Packages
 on: [push]
 jobs:
-  generate-build-zip:
+  generate-vw-packages:
     strategy:
       matrix:
         os: [bullseye, bookworm]
