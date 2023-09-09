@@ -1,0 +1,45 @@
+name: Build Vaultwarden Debian Packages
+on: [push]
+jobs:
+  generate-build-zip:
+    strategy:
+      matrix:
+        os: [bullseye, bookworm]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout Source Code to temp
+        uses: actions/checkout@v4
+        with:
+          path: temp
+          fetch-depth: 0
+      - name: Build Vaultwarden Debian Packages
+        run: |
+          cd temp
+
+          DEBIAN_CONTROL=$(pwd)
+          DL_DIR=$(pwd)/out
+          ARCHIVE_DIR=$(pwd)/artifacts
+
+          rm -rf $DL_DIR $ARCHIVE_DIR
+          mkdir -p $DL_DIR
+          mkdir -p $ARCHIVE_DIR
+
+          cd $DL_DIR
+          source $DEBIAN_CONTROL/versions
+          wget https://github.com/dani-garcia/vaultwarden/archive/refs/tags/$BW_VERSION.tar.gz
+          wget https://github.com/dani-garcia/bw_web_builds/releases/download/v$BW_WEB_VERSION/bw_web_v$BW_WEB_VERSION.tar.gz
+          mkdir -p $DL_DIR/vaultwarden
+          cp -R $DEBIAN_CONTROL/debian $DL_DIR/vaultwarden
+          cp $DEBIAN_CONTROL/versions $DL_DIR/vaultwarden/version-information
+
+          cd $DL_DIR/vaultwarden
+          tar xfvv $DL_DIR/$BW_VERSION.tar.gz
+          tar xfvv $DL_DIR/bw_web_v$BW_WEB_VERSION.tar.gz
+          dpkg-buildpackage -F
+
+          cp $DL_DIR/*.dsc $DL_DIR/*.deb $DL_DIR/vaultwarden_*.tar.gz $DL_DIR/*.changes $DL_DIR/*.buildinfo $ARCHIVE_DIR
+      - name: Upload GitHub Actions artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: vaultwarden-packages-${{ github.run_number }}-${{ matrix.os }}
+          path: temp/artifacts/
