@@ -1,3 +1,18 @@
+vaultwarden (1.30.1-1) unstable; urgency=medium
+  This is a minor release to fix some issues with the Login with device feature, and restore the alpine docker tag that was missing on the latest release.
+
+  Note: The WebSockets service for live sync has been integrated in the main HTTP server, which means simpler proxy setups that don't require a separate rule 
+  to redirect WS traffic to port 3012. Please check the updated examples in the wiki. It's recommended to migrate to this new setup as using the old server 
+  on port 3012 is deprecated, won't receive new features and will be removed in a future release.
+
+  What's Changed
+  * Fix missing alpine tag during buildx bake by @BlackDex in #4043
+  * Disable autofill-v2 by @BlackDex in #4056
+  * Add Protected Actions Check by @BlackDex in #4067
+  * Update crates by @BlackDex in #4074
+
+ -- Michael J. Manley <mjmanley@ntge.net>  Mon, 18 Dec 2023 01:44:00 -0800
+
 vaultwarden (1.29.2-1) unstable; urgency=medium
   Minor release to fix an issue forcing user to set amaster password when logging in even when it's already set
 
